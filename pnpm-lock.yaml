@@ -8,13 +8,19 @@ importers:
 
   .:
     dependencies:
+      '@types/node':
+        specifier: ^22.13.13
+        version: 22.13.13
+      ogl:
+        specifier: ^1.0.11
+        version: 1.0.11
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.7.3)
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
-        version: 5.2.3(vite@6.2.3)(vue@3.5.13(typescript@5.7.3))
+        version: 5.2.3(vite@6.2.3(@types/node@22.13.13))(vue@3.5.13(typescript@5.7.3))
       '@vue/tsconfig':
         specifier: ^0.7.0
         version: 0.7.0(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
@@ -23,7 +29,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^6.2.0
-        version: 6.2.3
+        version: 6.2.3(@types/node@22.13.13)
       vue-tsc:
         specifier: ^2.2.4
         version: 2.2.8(typescript@5.7.3)
@@ -314,6 +320,9 @@ packages:
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
+  '@types/node@22.13.13':
+    resolution: {integrity: sha512-ClsL5nMwKaBRwPcCvH8E7+nU4GxHVx1axNvMZTFHMEfNI7oahimt26P5zjVCRrjiIWj6YFXfE1v3dEp94wLcGQ==}
+
   '@vitejs/plugin-vue@5.2.3':
     resolution: {integrity: sha512-IYSLEQj4LgZZuoVpdSUCw3dIynTWQgPlaRP6iAvMle4My0HdYwr5g5wQAfwOeHQBmYwEkqF70nRpSilr6PoUDg==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -432,6 +441,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  ogl@1.0.11:
+    resolution: {integrity: sha512-kUpC154AFfxi16pmZUK4jk3J+8zxwTWGPo03EoYA8QPbzikHoaC82n6pNTbd+oEaJonaE8aPWBlX7ad9zrqLsA==}
+
   path-browserify@1.0.1:
     resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
 
@@ -455,6 +467,9 @@ packages:
     resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  undici-types@6.20.0:
+    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
   vite@6.2.3:
     resolution: {integrity: sha512-IzwM54g4y9JA/xAeBPNaDXiBF8Jsgl3VBQ2YQ/wOY6fyW3xMdSoltIV3Bo59DErdqdE6RxUfv8W69DvUorE4Eg==}
@@ -667,9 +682,13 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
-  '@vitejs/plugin-vue@5.2.3(vite@6.2.3)(vue@3.5.13(typescript@5.7.3))':
+  '@types/node@22.13.13':
     dependencies:
-      vite: 6.2.3
+      undici-types: 6.20.0
+
+  '@vitejs/plugin-vue@5.2.3(vite@6.2.3(@types/node@22.13.13))(vue@3.5.13(typescript@5.7.3))':
+    dependencies:
+      vite: 6.2.3(@types/node@22.13.13)
       vue: 3.5.13(typescript@5.7.3)
 
   '@volar/language-core@2.4.12':
@@ -822,6 +841,8 @@ snapshots:
 
   nanoid@3.3.11: {}
 
+  ogl@1.0.11: {}
+
   path-browserify@1.0.1: {}
 
   picocolors@1.1.1: {}
@@ -862,12 +883,15 @@ snapshots:
 
   typescript@5.7.3: {}
 
-  vite@6.2.3:
+  undici-types@6.20.0: {}
+
+  vite@6.2.3(@types/node@22.13.13):
     dependencies:
       esbuild: 0.25.1
       postcss: 8.5.3
       rollup: 4.37.0
     optionalDependencies:
+      '@types/node': 22.13.13
       fsevents: 2.3.3
 
   vscode-uri@3.1.0: {}
