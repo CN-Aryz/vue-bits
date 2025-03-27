@@ -14,6 +14,9 @@ importers:
       '@types/node':
         specifier: ^22.13.13
         version: 22.13.13
+      gl-matrix:
+        specifier: ^3.4.3
+        version: 3.4.3
       motion-v:
         specifier: ^0.13.1
         version: 0.13.1(vue@3.5.13(typescript@5.7.3))
@@ -628,6 +631,9 @@ packages:
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
+
+  gl-matrix@3.4.3:
+    resolution: {integrity: sha512-wcCp8vu8FT22BnvKVPjXa/ICBWRq/zjFfdofZy1WSpQZpphblv12/bOQLBC1rMM7SGOFS9ltVmKOHil5+Ml7gA==}
 
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
@@ -1364,6 +1370,8 @@ snapshots:
     optional: true
 
   gensync@1.0.0-beta.2: {}
+
+  gl-matrix@3.4.3: {}
 
   globals@11.12.0: {}
 

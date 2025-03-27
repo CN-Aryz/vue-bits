@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ElasticSlider from "./content/components/ElasticSlider/ElasticSlider.vue";
+import InfiniteMenu from "./content/components/InfiniteMenu/InfiniteMenu.vue";
 </script>
 
 <template>
@@ -12,13 +12,7 @@ import ElasticSlider from "./content/components/ElasticSlider/ElasticSlider.vue"
       justify-content: center;
     "
   >
-    <ElasticSlider
-      :startingValue="500"
-      :defaultValue="750"
-      :maxValue="1000"
-      isStepped
-      :stepSize="10"
-    />
+    <InfiniteMenu />
   </div>
 </template>
 

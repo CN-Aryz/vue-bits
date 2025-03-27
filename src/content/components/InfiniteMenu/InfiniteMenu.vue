@@ -1,0 +1,223 @@
+<template>
+  <div
+    :style="{
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+    }"
+  >
+    <canvas id="infinite-grid-menu-canvas" ref="canvasRef" />
+    <template v-if="activeItem">
+      <h2 :class="`face-title ${isMoving ? 'inactive' : 'active'}`">
+        {{ activeItem.title }}
+      </h2>
+
+      <p :class="`face-description ${isMoving ? 'inactive' : 'active'}`">
+        {{ activeItem.description }}
+      </p>
+
+      <div
+        @click="handleButtonClick"
+        :class="`action-button ${isMoving ? 'inactive' : 'active'}`"
+      >
+        <p class="action-button-icon">&#x2197;</p>
+      </div>
+    </template>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, watchEffect } from "vue";
+import { InfiniteGridMenu } from "./InfiniteGridMenu";
+
+export type InfiniteMenuItem = {
+  image: string;
+  link: string;
+  title: string;
+  description: string;
+};
+
+const props = withDefaults(
+  defineProps<{
+    items?: InfiniteMenuItem[];
+  }>(),
+  {
+    items: () => [
+      {
+        image: "https://picsum.photos/900/900?grayscale",
+        link: "https://google.com/",
+        title: "",
+        description: "",
+      },
+    ],
+  }
+);
+
+const canvasRef = ref<HTMLCanvasElement | null>(null);
+const activeItem = ref<InfiniteMenuItem | null>(null);
+const isMoving = ref(false);
+
+watchEffect((cleanUp) => {
+  const canvas = canvasRef.value;
+  const items = props.items;
+  let sketch: InfiniteGridMenu;
+
+  const handleActiveItem = (index: number) => {
+    const itemIndex = index % items.length;
+    activeItem.value = items[itemIndex];
+  };
+
+  if (canvas) {
+    sketch = new InfiniteGridMenu(
+      canvas,
+      items,
+      handleActiveItem,
+      (value: boolean) => (isMoving.value = value),
+      // @ts-ignore
+      (sk: InfiniteGridMenu) => sk.run()
+    );
+  }
+
+  const handleResize = () => {
+    if (sketch) {
+      sketch.resize();
+    }
+  };
+
+  window.addEventListener("resize", handleResize);
+  handleResize();
+  cleanUp(() => {
+    window.removeEventListener("resize", handleResize);
+  });
+});
+
+const handleButtonClick = () => {
+  if (!activeItem.value?.link) return;
+  if (activeItem.value.link.startsWith("http")) {
+    window.open(activeItem.value.link, "_blank");
+  } else {
+    console.log("Internal route:", activeItem.value.link);
+  }
+};
+</script>
+
+<style>
+/* Note: this CSS is only an example, you can overlay whatever you want using the activeItem logic */
+
+#infinite-grid-menu-canvas {
+  cursor: grab;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  outline: none;
+}
+
+#infinite-grid-menu-canvas:active {
+  cursor: grabbing;
+}
+
+.action-button {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: cyan;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 5px solid #000;
+}
+
+.face-title {
+  user-select: none;
+  position: absolute;
+  font-weight: 900;
+  font-size: 4rem;
+  left: 1.6em;
+  top: 50%;
+}
+
+.action-button-icon {
+  user-select: none;
+  position: relative;
+  color: #060606;
+  top: 2px;
+  font-size: 26px;
+}
+
+.face-title {
+  position: absolute;
+  top: 50%;
+  transform: translate(20%, -50%);
+}
+
+.face-title.active {
+  opacity: 1;
+  transform: translate(20%, -50%);
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-title.inactive {
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.1s ease;
+}
+
+.face-description {
+  user-select: none;
+  position: absolute;
+  max-width: 10ch;
+  top: 50%;
+  font-size: 1.5rem;
+  right: 1%;
+  transform: translate(0, -50%);
+}
+
+.face-description.active {
+  opacity: 1;
+  transform: translate(-90%, -50%);
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-description.inactive {
+  pointer-events: none;
+  transform: translate(-60%, -50%);
+  opacity: 0;
+  transition: 0.1s ease;
+}
+
+.action-button {
+  position: absolute;
+  left: 50%;
+}
+
+.action-button.active {
+  bottom: 3.8em;
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.action-button.inactive {
+  bottom: -80px;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.1s ease;
+}
+
+@media (max-width: 1500px) {
+  .face-title,
+  .face-description {
+    display: none;
+  }
+}
+</style>
