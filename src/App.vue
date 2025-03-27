@@ -1,11 +1,24 @@
 <script setup lang="ts">
-import CircularGallery from './content/components/CircularGallery/CircularGallery.vue';
-
+import ElasticSlider from "./content/components/ElasticSlider/ElasticSlider.vue";
 </script>
 
 <template>
-  <div style="width: 100vw; height: 100vh">
-    <CircularGallery />
+  <div
+    style="
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <ElasticSlider
+      :startingValue="500"
+      :defaultValue="750"
+      :maxValue="1000"
+      isStepped
+      :stepSize="10"
+    />
   </div>
 </template>
 
