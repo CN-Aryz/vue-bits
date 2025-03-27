@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  motion-dom: 12.5.0
+
 importers:
 
   .:
@@ -660,8 +663,8 @@ packages:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
 
-  motion-dom@12.6.0:
-    resolution: {integrity: sha512-1s/+/V0ny/gfhocSSf0qhkspZK2da7jrwGw7xHzgiQPcimdHaPRcRCoJ3OxEZYBNzy3ma1ERUD+eUStk6a9pQw==}
+  motion-dom@12.5.0:
+    resolution: {integrity: sha512-uH2PETDh7m+Hjd1UQQ56yHqwn83SAwNjimNPE/kC+Kds0t4Yh7+29rfo5wezVFpPOv57U4IuWved5d1x0kNhbQ==}
 
   motion-utils@12.5.0:
     resolution: {integrity: sha512-+hFFzvimn0sBMP9iPxBa9OtRX35ZQ3py0UHnb8U29VD+d8lQ8zH3dTygJWqK7av2v6yhg7scj9iZuvTS0f4+SA==}
@@ -1353,7 +1356,7 @@ snapshots:
 
   framer-motion@12.5.0:
     dependencies:
-      motion-dom: 12.6.0
+      motion-dom: 12.5.0
       motion-utils: 12.5.0
       tslib: 2.8.1
 
@@ -1386,7 +1389,7 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.1
 
-  motion-dom@12.6.0:
+  motion-dom@12.5.0:
     dependencies:
       motion-utils: 12.5.0
 
@@ -1397,7 +1400,7 @@ snapshots:
       '@vueuse/core': 10.11.1(vue@3.5.13(typescript@5.7.3))
       framer-motion: 12.5.0
       hey-listen: 1.0.8
-      motion-dom: 12.6.0
+      motion-dom: 12.5.0
       vue: 3.5.13(typescript@5.7.3)
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
