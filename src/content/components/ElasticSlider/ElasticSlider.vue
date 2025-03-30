@@ -24,31 +24,18 @@ import {
   useMotionValueEvent,
   useTransform,
 } from "motion-v";
-import {
-  defineComponent,
-  ref,
-  useSlots,
-  watchEffect,
-  type PropType
-} from "vue";
 import { RiVolumeDownFill, RiVolumeUpFill } from "vue-icons-plus/ri";
+import type { ElasticSliderProps } from "./types";
 
-withDefaults(
-  defineProps<{
-    defaultValue?: number;
-    startingValue?: number;
-    maxValue?: number;
-    isStepped?: boolean;
-    stepSize?: number;
-  }>(),
-  {
-    defaultValue: 50,
-    startingValue: 0,
-    maxValue: 100,
-    isStepped: false,
-    stepSize: 1,
-  }
-);
+const MAX_OVERFLOW = 50;
+
+withDefaults(defineProps<ElasticSliderProps>(), {
+  defaultValue: 50,
+  startingValue: 0,
+  maxValue: 100,
+  isStepped: false,
+  stepSize: 1,
+});
 
 const Slider = defineComponent({
   props: {
@@ -244,8 +231,6 @@ const Slider = defineComponent({
   },
 });
 
-const MAX_OVERFLOW = 50;
-
 // Sigmoid-based decay function
 function decay(value: number, max: number) {
   if (max === 0) {
@@ -259,7 +244,7 @@ function decay(value: number, max: number) {
 }
 </script>
 
-<style>
+<style scoped>
 .slider-container {
   display: flex;
   flex-direction: column;

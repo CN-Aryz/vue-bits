@@ -1,27 +1,42 @@
 {
   "name": "vue-bits",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build:es": "vue-tsc -b && vite build",
+    "build:umd": "vue-tsc -b && vite build --config vite.config.umd.ts",
+    "build": "rimraf dist && rimraf types && pnpm run build:es && pnpm run build:umd",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/node": "^22.13.13",
     "gl-matrix": "^3.4.3",
     "motion-v": "^0.13.1",
     "ogl": "^1.0.11",
     "vue": "^3.5.13",
     "vue-icons-plus": "^0.1.8"
   },
+  "module": "dist/es/index.js",
+  "main": "dist/umd/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "!dist/**/*.map",
+    "dist",
+    "types"
+  ],
   "devDependencies": {
+    "@types/node": "^22.13.13",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.2",
     "@vue/tsconfig": "^0.7.0",
+    "fast-glob": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "terser": "^5.39.0",
     "typescript": "~5.7.2",
+    "unplugin-auto-import": "^19.1.2",
     "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-lib-inject-css": "^2.2.1",
     "vue-tsc": "^2.2.4"
   },
   "resolutions": {

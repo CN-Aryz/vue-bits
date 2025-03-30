@@ -28,31 +28,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
 import { InfiniteGridMenu } from "./InfiniteGridMenu";
+import type { InfiniteMenuItem, InfiniteMenuProps } from "./types";
 
-export type InfiniteMenuItem = {
-  image: string;
-  link: string;
-  title: string;
-  description: string;
-};
-
-const props = withDefaults(
-  defineProps<{
-    items?: InfiniteMenuItem[];
-  }>(),
-  {
-    items: () => [
-      {
-        image: "https://picsum.photos/900/900?grayscale",
-        link: "https://google.com/",
-        title: "",
-        description: "",
-      },
-    ],
-  }
-);
+const props = withDefaults(defineProps<InfiniteMenuProps>(), {
+  items: () => [
+    {
+      image: "https://picsum.photos/900/900?grayscale",
+      link: "https://google.com/",
+      title: "",
+      description: "",
+    },
+  ],
+});
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const activeItem = ref<InfiniteMenuItem | null>(null);
@@ -102,7 +90,7 @@ const handleButtonClick = () => {
 };
 </script>
 
-<style>
+<style scoped>
 /* Note: this CSS is only an example, you can overlay whatever you want using the activeItem logic */
 
 #infinite-grid-menu-canvas {
